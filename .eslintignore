@@ -1,0 +1,7 @@
+public
+node_modules
+.history
+.husky
+dist
+*.d.ts
+src/modules/engine/services/mongo.parser.ts
