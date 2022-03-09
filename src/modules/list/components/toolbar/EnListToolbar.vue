@@ -66,7 +66,7 @@
         </el-badge>
       </div>
     </el-col>
-    <el-drawer
+<!--    <el-drawer
       v-model:visible="showSearchDrawer"
       title="Search"
       direction="rtl"
@@ -83,7 +83,7 @@
           @apply="$emit('applyFilter', $event)"
         />
       </div>
-    </el-drawer>
+    </el-drawer>-->
   </el-row>
 </template>
 
