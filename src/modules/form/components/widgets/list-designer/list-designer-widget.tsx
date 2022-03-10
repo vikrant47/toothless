@@ -1,6 +1,6 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
 import {ITEM_LAYOUT} from '@/modules/form/components/widgets/base-widget/widget-config';
-import ListDesigner from '@/modules/form/components/widgets/list-designer/ListDesigner';
+import ListDesigner from '@/modules/form/components/widgets/list-designer/ListDesigner.vue';
 
 export default class ListDesignerWidget extends BaseWidget {
   init() {

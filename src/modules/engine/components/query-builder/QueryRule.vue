@@ -43,7 +43,7 @@
               />
             </el-select>
             <el-tooltip content="Expression" placement="top">
-              <el-switch v-model="rule.expression" @input="$forceUpdate()" />
+              <el-switch v-model="rule.expression" @input="$forceUpdate()"/>
             </el-tooltip>
           </div>
         </el-col>
@@ -81,19 +81,20 @@
 </template>
 
 <script lang="ts">
-import { Delete as EluIconDelete } from '@element-plus/icons';
+import {Delete as EluIconDelete} from '@element-plus/icons';
+
+import {FieldTypeWidget} from '@/modules/engine/components/query-builder/models/QueryFieldTypeWdiegt';
+import {Engine} from '@/modules/engine/core/engine';
+import {EngineForm} from '@/modules/form/engine-api/engine.form';
+import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
 import EnField from '@/modules/form/components/engine/field/EnField';
-import { FieldTypeWidget } from '@/modules/engine/components/query-builder/models/QueryFieldTypeWdiegt';
-import { Engine } from '@/modules/engine/core/engine';
-import { EngineForm } from '@/modules/form/engine-api/engine.form';
-import { WIDGETS } from '@/modules/form/components/widgets/base-widget/widgets';
 
 export default defineComponent({
   name: 'QueryRule',
   components: {
     EnField,
     QueryBuilder: () => {
-      return import('@/modules/engine/components/query-builder/QueryBuilder');
+      return import('@/modules/engine/components/query-builder/QueryBuilder.vue');
     },
   },
   props: {
@@ -113,11 +114,11 @@ export default defineComponent({
       required: true,
     },
   },
-  data() {
+  data(): { rule: any, EluIconDelete: any } {
     return {
       rule: Engine.clone(
         Object.assign(
-          { operator: 'equal', data: { value: this.value['value'] }},
+          {operator: 'equal', data: {value: this.value['value']}},
           this.value
         )
       ),
@@ -129,10 +130,7 @@ export default defineComponent({
       return this.getInputCount();
     },
     widget() {
-      if (
-        this.rule.operator &&
-        this.operatorMappings[this.rule.operator].nb_inputs === 0
-      ) {
+      if (this.rule.operator && this.operatorMappings[this.rule.operator].nb_inputs === 0) {
         return null;
       }
       return (this.rule.field && this.getFieldWidget(this.rule.field)) || null;
@@ -183,7 +181,7 @@ export default defineComponent({
         }
         widget = Object.assign({}, FieldTypeWidget[field.type]);
         const engineForm = new EngineForm();
-        engineForm.setDefinition({ fields: [field] });
+        engineForm.setDefinition({fields: [field]});
         engineForm.fillFieldConfig(fieldName, widget);
         Object.assign(widget.fieldSettings, {
           readOnly: false,

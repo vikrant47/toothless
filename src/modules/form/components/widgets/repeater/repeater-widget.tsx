@@ -1,6 +1,6 @@
 import {EngineForm} from '@/modules/form/engine-api/engine.form';
 import FormDesignerWidget from '@/modules/form/components/widgets/form-designer/form-designer-widget';
-import FormDesigner from '@/modules/form/components/widgets/form-designer/designer/FormDesigner';
+import FormDesigner from '@/modules/form/components/widgets/form-designer/designer/FormDesigner.vue';
 import Parser from '@/modules/form/components/widgets/form-designer/render/Parser';
 import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
 import draggable from 'vuedraggable';

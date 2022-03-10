@@ -2,7 +2,7 @@ import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-w
 import { WIDGETS } from '@/modules/form/components/widgets/base-widget/widgets';
 import { RestQuery } from '@/modules/engine/services/rest.query';
 import { Engine } from '@/modules/engine/core/engine';
-import QueryBuilder from '@/modules/engine/components/query-builder/QueryBuilder';
+import QueryBuilder from '@/modules/engine/components/query-builder/QueryBuilder.vue';
 import { TemplateEngine } from '@/modules/engine/core/template.engine';
 
 export default class QueryBuilderWidget extends BaseWidget {

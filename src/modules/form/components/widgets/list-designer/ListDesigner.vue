@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="left-board">
+<!--    <div class="left-board">
       <el-scrollbar class="left-scrollbar">
         <el-tab-pane class="components-list">
           <el-tabs model-value="Fields" :stretch="true">
@@ -73,19 +73,19 @@
         </el-row>
       </el-scrollbar>
     </div>
-    <input id="copyNode" type="hidden">
+    <input id="copyNode" type="hidden">-->
   </div>
 </template>
 
 <script>
-import { Delete as EluIconDelete } from '@element-plus/icons';
+/*import { Delete as EluIconDelete } from '@element-plus/icons';
 
 import draggable from 'vuedraggable';
 import { debounce } from 'throttle-debounce';
 import ClipboardJS from 'clipboard';
 import { deepClone } from '@/modules/form/utils';
 import drawingDefalut from '@/modules/form/components/generator/drawingDefalut';
-import { saveIdGlobal } from '@/modules/form/utils/db';
+import { saveIdGlobal } from '@/modules/form/utils/db';*/
 
 let tempactiveWidget;
 // const drawingListInDB = [];// getDrawingList();
@@ -93,10 +93,10 @@ let tempactiveWidget;
 let hash = null;
 export default {
   name: 'ListDesigner',
-  components: {
+ /* components: {
     draggable,
     EluIconDelete,
-  },
+  },*/
   props: {
     value: {
       type: Object,
@@ -111,7 +111,7 @@ export default {
       },
     },
   },
-  data() {
+  /*data() {
     return {
       activePallet: 'Fields',
       configVisible: false,
@@ -270,7 +270,7 @@ export default {
         this.idGlobal = 100;
       });
     },
-  },
+  },*/
 };
 </script>
 

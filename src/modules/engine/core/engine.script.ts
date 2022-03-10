@@ -6,6 +6,7 @@ export class EngineScript {
   alias
   script
   compiled
+  private static defaultContext: any;
 
   constructor(settings = {}) {
     Object.assign(this, settings);
@@ -34,12 +35,15 @@ export class EngineScript {
     return new EngineScript({script: `()=>{}`});
   }
 
+  static async loadDefaultContext() {
+    this.defaultContext = (await import('@/modules/engine/context/index')).default;
+  }
+
   static buildContext(context = {}, self) {
-    const defaultContext = import('@/modules/engine/context/index');
     return Object.assign(
       {self: self},
+      this.defaultContext,
       context,
-      defaultContext
     );
   }
 

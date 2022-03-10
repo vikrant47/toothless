@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <div v-if="showPallet === true" class="left-board">
-      <!--<div class="logo-wrapper">
+<!--    <div v-if="showPallet === true" class="left-board">
+      &lt;!&ndash;<div class="logo-wrapper">
           <div class="logo">
             <img alt="logo"> Form Generator
             <a class="github" href="https://github.com/JakHuang/form-generator" target="_blank">
               <img src="https://github.githubassets.com/pinned-octocat.svg" alt>
             </a>
           </div>
-        </div>-->
+        </div>&ndash;&gt;
       <el-scrollbar class="left-scrollbar">
         <el-tab-pane class="components-list">
           <el-tabs model-value="Fields" :stretch="true">
@@ -53,7 +53,7 @@
         showPallet ? 'center-board center-board-with-pallet' : 'center-board'
       "
     >
-      <!--<div class="action-bar">
+      &lt;!&ndash;<div class="action-bar">
           <el-button icon="elu-icon-video-play" type="text" @click="run">
             run
           </el-button>
@@ -69,7 +69,7 @@
           <el-button class="delete-btn" icon="elu-icon-delete" type="text" @click="empty">
             Empty
           </el-button>
-        </div>-->
+        </div>&ndash;&gt;
       <el-scrollbar class="center-scrollbar">
         <el-row class="center-board-row" :gutter="formConf.gutter">
           <el-form
@@ -127,12 +127,12 @@
         />
       </el-drawer>
     </div>
-    <input id="copyNode" type="hidden">
+    <input id="copyNode" type="hidden">-->
   </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable';
+/*import draggable from 'vuedraggable';
 import { debounce } from 'throttle-debounce';
 import { saveAs } from 'file-saver';
 import ClipboardJS from 'clipboard';
@@ -153,14 +153,16 @@ import {
 import { makeUpJs } from '@/modules/form/components/generator/js';
 import { makeUpCss } from '@/modules/form/components/generator/css';
 import drawingDefalut from '@/modules/form/components/generator/drawingDefalut';
-import DraggableItem from '@/modules/form/components/widgets/form-designer/designer/DraggableItem';
+import DraggableItem from '@/modules/form/components/widgets/form-designer/designer/DraggableItem';*/
 import { getIdGlobal, saveIdGlobal } from '@/modules/form/utils/db';
+/*
 import loadBeautifier from '@/modules/form/utils/loadBeautifier';
 import { FormWidgetService } from '@/modules/form/services/form.widget.service';
 import { Engine } from '@/modules/engine/core/engine';
 import _ from 'lodash';
 import { LAYOUT_WIDGETS } from '@/modules/form/components/widgets/base-widget/widgets';
 import { TemplateEngine } from '@/modules/engine/core/template.engine';
+*/
 
 let beautifier;
 let oldActiveId;
@@ -170,11 +172,11 @@ let tempactiveWidget;
 const idGlobal = getIdGlobal();
 export default {
   name: 'FormDesigner',
-  components: {
+  /*components: {
     draggable,
     RightPanel,
     DraggableItem,
-  },
+  },*/
   props: {
     showPallet: {
       type: Boolean,
@@ -193,7 +195,7 @@ export default {
       },
     },
   },
-  data() {
+  /*data() {
     return {
       renderKey: 'KEY_Designer_' + new Date().getTime(),
       hash: null,
@@ -601,7 +603,7 @@ export default {
       delete data.widgets;
       this.formConf = data.formConf || Engine.clone(formConf);
     },
-  },
+  },*/
 };
 </script>
 

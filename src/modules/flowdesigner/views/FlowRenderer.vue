@@ -44,17 +44,17 @@
   </el-container>
 </template>
 
-<script>
+<script lang="ts">
 import {
   Message as EluIconMessage,
   Setting as EluIconSetting,
 } from '@element-plus/icons';
-import FlowNode from '@/modules/flowdesigner/components/node/FlowNode';
-import FlowDesigner from '@/modules/flowdesigner/components/flow/FlowDesigner';
+import FlowNode from '@/modules/flowdesigner/components/node/FlowNode.vue';
+import FlowDesigner from '@/modules/flowdesigner/components/flow/FlowDesigner.vue';
 import {EngineFlow} from "../engine-api/engine.flow";
 import {EngineFlowNode} from "../engine-api/engine.flow.node";
 
-export default {
+export default defineComponent({
   name: 'FlowRenderer',
   components: {
     FlowDesigner,
@@ -76,7 +76,7 @@ export default {
     }
   },
   methods: {},
-};
+});
 </script>
 
 <style lang="scss" scoped>

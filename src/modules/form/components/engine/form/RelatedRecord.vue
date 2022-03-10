@@ -29,7 +29,7 @@
 
 <script>
 import { EngineForm } from '@/modules/form/engine-api/engine.form';
-import EnList from '@/modules/list/components/list/EnList';
+import EnList from '@/modules/list/components/list/EnList.vue';
 import { FORM_EVENTS } from '@/modules/form/engine-api/form-events';
 
 export default {

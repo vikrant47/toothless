@@ -20,12 +20,11 @@
 </template>
 
 <script>
-import { Vue } from '@/main';
-import EnAction from '@/modules/engine/components/EnAction';
+import EnAction from '@/modules/engine/components/EnAction.vue';
 
 export default {
   name: 'EnFormToolbar',
-  components: { EnAction },
+  components: {EnAction},
   props: {
     actions: {
       type: Array,
@@ -41,8 +40,8 @@ export default {
   created() {
     const engineForm = this.$parent.engineForm;
     const formEventHandler = this.$parent.formEventHandler;
-    Vue.set(this, 'engineForm', engineForm);
-    Vue.set(this, 'formEventHandler', formEventHandler);
+    this.engineForm = engineForm;
+    this.formEventHandler = formEventHandler;
     // this.$parent.crud.updateProp('searchToggle', true);
   },
   methods: {},

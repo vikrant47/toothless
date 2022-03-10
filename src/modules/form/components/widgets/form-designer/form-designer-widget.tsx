@@ -1,5 +1,5 @@
 import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-widget';
-import FormDesigner from '@/modules/form/components/widgets/form-designer/designer/FormDesigner';
+import FormDesigner from '@/modules/form/components/widgets/form-designer/designer/FormDesigner.vue';
 import { ITEM_LAYOUT } from '@/modules/form/components/widgets/base-widget/widget-config';
 
 export default class FormDesignerWidget extends BaseWidget {

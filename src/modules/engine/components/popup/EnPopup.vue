@@ -30,7 +30,7 @@
 
 <script>
 import { EnginePopup } from '@/modules/engine/services/engine.popup';
-import EnAction from '@/modules/engine/components/EnAction';
+import EnAction from '@/modules/engine/components/EnAction.vue';
 
 export default {
   name: 'EnPopup',

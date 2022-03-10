@@ -1,5 +1,5 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
-import IconsDialog from '@/modules/form/components/widgets/icon-picker/IconsDialog';
+import IconsDialog from '@/modules/form/components/widgets/icon-picker/IconsDialog.vue';
 
 export default class IconPickerWidget extends BaseWidget {
   palletSettings = {

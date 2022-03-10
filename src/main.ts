@@ -1,17 +1,20 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
+
 const app = createApp(App)
 import router from './router'
 import '@/styles/index.scss' // global css
 //import vuex
 import store from './store'
+
 app.use(store)
 
 //import element-plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-app.use(ElementPlus, { size: 'small', locale: zhCn })
+
+app.use(ElementPlus, {size: 'small', locale: zhCn})
 
 //global mixin
 // import elementMixin from '@/mixins/elementMixin'
@@ -28,6 +31,7 @@ app.use(ElementPlus, { size: 'small', locale: zhCn })
 //import svg-icon doc in  https://github.com/anncwb/vite-plugin-svg-icons/blob/main/README.zh_CN.md
 import 'virtual:svg-icons-register'
 import svgIcon from '@/icons/SvgIcon.vue'
+
 app.component('SvgIcon', svgIcon)
 
 //global mount moment-mini
@@ -35,18 +39,25 @@ app.component('SvgIcon', svgIcon)
 // app.config.globalProperties.$momentMini = $momentMini
 //import global directive
 import directive from '@/directive'
+
 directive(app)
 //import router  intercept
 import './permission'
 
 //element svg icon
 import ElSvgIcon from "@/components/ElSvgIcon.vue"
-app.component("ElSvgIcon",ElSvgIcon)
 
+app.component("ElSvgIcon", ElSvgIcon)
 
 
 //error log  collection
 import errorLog from '@/hooks/useErrorLog'
+import {EngineScript} from "@/modules/engine/core/engine.script";
+
 errorLog()
 
 app.use(router).mount('#app')
+// load all dependencies
+setTimeout(async () => {
+  await EngineScript.loadDefaultContext();
+});

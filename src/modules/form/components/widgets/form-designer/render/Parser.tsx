@@ -1,5 +1,3 @@
-<script>
-import Render from '@/modules/form/components/widgets/form-designer/render/render.js';
 import _ from 'lodash';
 import {TemplateEngine} from '@/modules/engine/core/template.engine';
 import {FormWidgetService} from '@/modules/form/services/form.widget.service';
@@ -11,7 +9,7 @@ import {
 } from '@/modules/form/engine-api/form-events';
 import {Engine} from '@/modules/engine/core/engine';
 import {loadWidget} from "@/modules/form/components/widgets/base-widget/widget-types";
-import render from '@/modules/form/components/widgets/form-designer/render/render.tsx';
+import render from '@/modules/form/components/widgets/form-designer/render/render';
 
 const ruleTrigger = {
   'el-input': 'blur',
@@ -58,7 +56,7 @@ const layouts = {
   },
   rowFormItem(h, widget) {
     const widgetSettings = widget.widgetSettings;
-    let child = renderChildren.apply(this, arguments);
+    let child = renderChildren.apply(this, [h, widget]);
     if (widgetSettings.type === 'flex') {
       child = (
         <el-row
@@ -357,4 +355,3 @@ export default defineComponent({
     return renderFrom.call(this, h);
   },
 });
-</script>

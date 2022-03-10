@@ -1,7 +1,7 @@
-import Layout from '@/layout/index';
-import ListView from '@/modules/list/views/index';
-import * as DashboardView from '@/modules/dashboard/views/index';
-import request from '@/utils/request';
+import Layout from '@/layout/Layout.vue';
+import ListView from '@/modules/list/views/index.vue';
+import DashboardView from '@/components/ElSvgIcon.vue';
+import request from '@/utils/axiosReq';
 import {TenantService} from '@/modules/engine/services/tenant.service';
 import $router from '@/router';
 import {Engine} from '@/modules/engine/core/engine';

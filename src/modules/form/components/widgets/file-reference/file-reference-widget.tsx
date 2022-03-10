@@ -1,6 +1,6 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
 import {EngineNotification} from '@/modules/engine/services/engine.notification';
-import EnList from '@/modules/list/components/list/EnList';
+import EnList from '@/modules/list/components/list/EnList.vue';
 import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
 import {EngineFile} from '@/modules/engine/services/engine.file.service';
 
