@@ -53,6 +53,7 @@ app.component("ElSvgIcon", ElSvgIcon)
 //error log  collection
 import errorLog from '@/hooks/useErrorLog'
 import {EngineScript} from "@/modules/engine/core/engine.script";
+import {loadWidget} from "@/modules/form/components/widgets/base-widget/widget-types";
 
 errorLog()
 
@@ -60,4 +61,5 @@ app.use(router).mount('#app')
 // load all dependencies
 setTimeout(async () => {
   await EngineScript.loadDefaultContext();
+  await loadWidget();
 });

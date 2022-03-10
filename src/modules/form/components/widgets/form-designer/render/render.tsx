@@ -1,5 +1,5 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
-
+import { h } from 'vue'
 /*
 function vModel(dataObject, defaultValue) {
   dataObject.props.value = typeof dataObject.props.value === 'undefined' ? defaultValue : dataObject.props.value;
@@ -85,6 +85,7 @@ function makeDataObject() {
   };
 }*/
 
+
 export default defineComponent({
   name: 'Render',
   props: {
@@ -110,6 +111,7 @@ export default defineComponent({
       },
     },
   },
+  // @ts-ignore
   data() {
     return {
       flag: true,
@@ -125,7 +127,7 @@ export default defineComponent({
     // @ts-ignore
     await this.widget.mounted();
   },
-  render(h) {
+  render() {
     // @ts-ignore
     this.widget.setRenderComponent(this);
     // const formModel = Engine.clone(this.formModel);

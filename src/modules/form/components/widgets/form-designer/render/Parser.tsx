@@ -239,7 +239,7 @@ function buildListeners(widget) {
 export default defineComponent({
   name: 'Parser',
   components: {
-    Render,
+    render,
   },
   props: {
     engineForm: {

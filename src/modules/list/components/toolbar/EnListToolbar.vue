@@ -66,8 +66,8 @@
         </el-badge>
       </div>
     </el-col>
-<!--    <el-drawer
-      v-model:visible="showSearchDrawer"
+    <el-drawer
+      v-model="showSearchDrawer"
       title="Search"
       direction="rtl"
       :before-close="handleSearchClose"
@@ -83,7 +83,7 @@
           @apply="$emit('applyFilter', $event)"
         />
       </div>
-    </el-drawer>-->
+    </el-drawer>
   </el-row>
 </template>
 
@@ -96,12 +96,12 @@ import {Engine} from '@/modules/engine/core/engine';
 import EnAction from '@/modules/engine/components/EnAction.vue';
 import {LIST_EVENTS, ListEvent} from '@/modules/list/engine-api/list-events';
 import {EngineList} from '@/modules/list/engine-api/engine.list';
-// import QueryBuilder from '@/modules/engine/components/query-builder/QueryBuilder.vue';
+import QueryBuilder from '@/modules/engine/components/query-builder/QueryBuilder.vue';
 
 export default defineComponent({
   name: 'EnListToolbar',
   components: {
-    // QueryBuilder,
+    QueryBuilder,
     EnAction,
     EluIconSearch,
   },
