@@ -1,25 +1,30 @@
 <template>
-  <editor
-    ref="toastuiEditor"
-    :initial-value="editorHtml"
-    :options="editorOptions"
-    :height="height"
-    :initial-edit-type="editorType"
-    :preview-style="previewStyle"
-    @change="onEditorChange"
-  />
+  <ckeditor
+    v-model="editorText"
+    :editor="editor"
+    :config="editorOptions"
+    @input="onEditorChange"
+    @mounted="onMounted($event)"></ckeditor>
+  <!--  <editor
+      ref="toastuiEditor"
+      :initial-value="editorHtml"
+      :options="editorOptions"
+      :height="height"
+      :initial-edit-type="editorType"
+      :preview-style="previewStyle"
+      @change="onEditorChange"
+    />-->
 </template>
 
 <script lang="ts">
-import 'codemirror/lib/codemirror.css'; // Editor's Dependency Style
-import '@toast-ui/editor/dist/toastui-editor.css'; // Editor's Style
-import {Editor} from '@toast-ui/vue-editor';
+// import 'codemirror/lib/codemirror.css'; // Editor's Dependency Style
+// import '@toast-ui/editor/dist/toastui-editor.css'; // Editor's Style
+// import {Editor} from '@toast-ui/vue-editor';
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default defineComponent({
   name: 'MarkDown',
-  components: {
-    editor: Editor,
-  },
   props: {
     value: {
       type: String,
@@ -35,7 +40,7 @@ export default defineComponent({
     },
     height: {
       type: String,
-      default: '300px',
+      default: '300',
     },
     options: {
       type: Object,
@@ -46,8 +51,12 @@ export default defineComponent({
   },
   data() {
     return {
+      editorConfig: {},
+      editor: ClassicEditor,
       editorText: this.value,
-      editorOptions: this.options,
+      editorOptions: Object.assign({height: this.height}, this.options),
+      editorInstance: null,
+      initialized: false,
     };
   },
   computed: {
@@ -56,29 +65,37 @@ export default defineComponent({
     },
   },
   watch: {
-    value: {
+    editorText: {
       handler(value) {
-        this['$refs']?.toastuiEditor?.invoke('setHtml', value);
+        console.log('editor text changed')
+        this.$emit('change', this.editorText);
       },
     },
   },
   mounted() {
-    this.$refs.toastuiEditor.editor.eventManager.listen(
-      'pasteBefore',
-      function (event) {
-        /* var html = event.clipboardContainer.innerHTML;
-      var doc = new DOMParser().parseFromString(html, 'text/html');
-      doc.querySelectorAll('span').forEach(function(el) {
-        el.outerHTML = el.textContent;
-      });
-      html = doc.body;
-      event.clipboardContainer.innerHTML = html.outerHTML;*/
-      }
-    );
+  },
+  beforeUpdate() {
+    //@ts-ignore
+    if (!this.initialized && this.value !== this.editorText) {
+      //@ts-ignore
+      this.editorText = this.value;
+      this.initialized = true;
+    }
   },
   methods: {
+    onMounted(editor) {
+      console.log("ckeditor mounted");
+      this.editorInstance = editor;
+      editor.on('change', () => {
+        console.log('ckeditor onchange');
+        let html = editor.getData();
+        if (html !== this.editorText) {
+          this.$emit('changed', html);
+        }
+      });
+    },
     onEditorChange() {
-      this.$emit('change', this.$refs.toastuiEditor.invoke('getHtml'));
+      this.$emit('change', this.editorText);
     },
   },
 });

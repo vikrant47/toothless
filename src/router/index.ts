@@ -1,6 +1,6 @@
-import { createRouter, createWebHashHistory, Router } from 'vue-router'
+import {createRouter, createWebHashHistory, Router} from 'vue-router'
 import Layout from '@/layout'
-import { RouterTy } from '~/router'
+import {RouterTy} from '~/router'
 
 export const constantRoutes: RouterTy = [
   {
@@ -34,48 +34,48 @@ export const constantRoutes: RouterTy = [
     component: Layout,
     redirect: '/dashboard',
     name: 'Dashboard',
-    meta: { title: 'System'},
-      children: [
+    meta: {title: 'System'},
+    children: [
       {
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard/index.vue'),
         //using el svg icon, the elSvgIcon first when at the same time using elSvgIcon and icon
-        meta: { title: 'Dashboard', elSvgIcon: 'Fold' }
+        meta: {title: 'Dashboard', elSvgIcon: 'Fold'}
+      },
+      {
+        path: 'models/:modelAlias/form/:formId/:recordId/:view',
+        component: () => import('@/modules/form/views/FormRenderer.vue'),
+        name: 'Forms',
+        meta: {title: 'Forms', icon: 'index', affix: true, noCache: true},
+
       },
       {
         path: 'models/:modelAlias/list/:list/:view',
         component: () => import('@/modules/list/views/index.vue'),
         name: 'List',
-        meta: { title: 'List', icon: 'index', affix: true, noCache: true },
+        meta: {title: 'List', icon: 'index', affix: true, noCache: true},
 
       },
       {
-        path: '/flows/:flowId',
+        path: 'flows/:flowId',
         component: () => import('@/modules/flowdesigner/views/FlowRenderer.vue'),
         name: 'Flow',
-        meta: { title: 'Flow', icon: 'index', affix: true, noCache: true },
-
-      },
-      {
-        path: '/models/:modelAlias/form/:formId/:recordId/:view',
-        component: () => import('@/modules/form/views/FormRenderer.vue'),
-        name: 'Form',
-        meta: { title: 'Form', icon: 'index', affix: true, noCache: true },
+        meta: {title: 'Flow', icon: 'index', affix: true, noCache: true},
 
       },
       {
         path: 'widgets/:widgetId/render',
         component: () => import('@/modules/list/views/index.vue'),
         name: 'Widget',
-        meta: { title: 'Home', icon: 'index', affix: true, noCache: true },
+        meta: {title: 'Home', icon: 'index', affix: true, noCache: true},
 
       },
       {
         path: 'dashboards/:dashboardId/render',
         component: () => import('@/modules/list/views/index.vue'),
         name: 'Dashboard',
-        meta: { title: 'Home', icon: 'index', affix: true, noCache: true },
+        meta: {title: 'Home', icon: 'index', affix: true, noCache: true},
 
       },
     ]
@@ -88,7 +88,7 @@ export const constantRoutes: RouterTy = [
         path: 'index',
         component: () => import('@/views/setting-switch'),
         name: 'SettingSwitch',
-        meta: { title: 'Setting Switch', icon: 'example' }
+        meta: {title: 'Setting Switch', icon: 'example'}
       }
     ]
   },
@@ -96,57 +96,57 @@ export const constantRoutes: RouterTy = [
     path: '/error-log',
     component: Layout,
     redirect: '/error-log/list',
-    meta: { title: 'ErrorLog', icon: 'bug' },
+    meta: {title: 'ErrorLog', icon: 'bug'},
     children: [
       {
         path: 'list',
         component: () => import('@/views/error-log'),
         name: 'ErrorLog',
-        meta: { title: 'Error Log' }
+        meta: {title: 'Error Log'}
       },
       {
         path: 'error-log-test',
         component: () => import('@/views/error-log/ErrorLogTest.vue'),
         name: 'ErrorLogTest',
-        meta: { title: 'ErrorLog Test' }
+        meta: {title: 'ErrorLog Test'}
       }
     ]
   },
   {
     path: '/writing-demo',
     component: Layout,
-    meta: { title: 'Writing Demo', icon: 'eye-open' },
+    meta: {title: 'Writing Demo', icon: 'eye-open'},
     alwaysShow: true,
     children: [
       {
         path: 'hook',
         component: () => import('@/views/example/hook/Hook.vue'),
         name: 'Hook',
-        meta: { title: 'Hook-Demo' }
+        meta: {title: 'Hook-Demo'}
       },
       {
         path: 'vuex-use',
         component: () => import('@/views/example/vuex-use/VuexUse.vue'),
         name: 'VuexUse',
-        meta: { title: 'Vuex-Demo' }
+        meta: {title: 'Vuex-Demo'}
       },
       {
         path: 'mock-test',
         component: () => import('@/views/example/mock-test/MockTest.vue'),
         name: 'MockTest',
-        meta: { title: 'Mock-Demo' }
+        meta: {title: 'Mock-Demo'}
       },
       {
         path: 'svg-icon',
         component: () => import('@/views/example/svg-icon/SvgIcon.vue'),
         name: 'SvgIcon',
-        meta: { title: 'Svg-Demo' }
+        meta: {title: 'Svg-Demo'}
       },
       {
         path: 'parent-children',
         component: () => import('@/views/example/parent-children/Parent.vue'),
         name: 'Parent',
-        meta: { title: 'Parent-Children' }
+        meta: {title: 'Parent-Children'}
       },
       {
         path: 'keep-alive',
@@ -154,48 +154,48 @@ export const constantRoutes: RouterTy = [
         name: 'KeepAlive',
         //cachePage: cachePage when page enter, default false
         //leaveRmCachePage: remove cachePage when page leave, default false
-        meta: { title: 'Keep-Alive', cachePage: true, leaveRmCachePage: false }
+        meta: {title: 'Keep-Alive', cachePage: true, leaveRmCachePage: false}
       },
       {
         path: 'tab-keep-alive',
         component: () => import('@/views/example/keep-alive/TabKeepAlive.vue'),
         name: 'TabKeepAlive',
         //closeTabRmCache: remove cachePage when tabs close, default false
-        meta: { title: 'Tab-Keep-Alive', cachePage: true, closeTabRmCache: true }
+        meta: {title: 'Tab-Keep-Alive', cachePage: true, closeTabRmCache: true}
       },
       {
         path: 'router-demo-f',
         name: 'routerDemoF',
         hidden: true,
         component: () => import('@/views/example/keep-alive/RouterDemoF.vue'),
-        meta: { title: 'RouterDemo-F', activeMenu: '/writing-demo/keep-alive' }
+        meta: {title: 'RouterDemo-F', activeMenu: '/writing-demo/keep-alive'}
       },
       {
         path: 'router-demo-s',
         name: 'routerDemoS',
         hidden: true,
         component: () => import('@/views/example/keep-alive/RouterDemoS.vue'),
-        meta: { title: 'RouterDemo-S', activeMenu: '/writing-demo/keep-alive' }
+        meta: {title: 'RouterDemo-S', activeMenu: '/writing-demo/keep-alive'}
       },
       {
         path: 'deep-router-keep-alive',
         name: 'DeepRouterKeepAlive',
         component: () => import('@/views/example/keep-alive/DeepRouterKeepAlive.vue'),
         //注：移除父容器页面缓存会把子页面一起移除了
-        meta: { title: 'Deep KeepAlive', cachePage: true, leaveRmCachePage: false },
+        meta: {title: 'Deep KeepAlive', cachePage: true, leaveRmCachePage: false},
         alwaysShow: true,
         children: [
           {
             path: 'deep-children',
             name: 'DeepChildren',
             component: () => import('@/views/example/keep-alive/deep-children/DeepChildren.vue'),
-            meta: { title: 'DeepChildren', cachePage: true, leaveRmCachePage: true }
+            meta: {title: 'DeepChildren', cachePage: true, leaveRmCachePage: true}
           },
           {
             path: 'deep-children-sd',
             name: 'DeepChildrenSd',
             component: () => import('@/views/example/keep-alive/deep-children/DeepChildrenSd.vue'),
-            meta: { title: 'DeepChildrenSd', cachePage: true, leaveRmCachePage: false }
+            meta: {title: 'DeepChildrenSd', cachePage: true, leaveRmCachePage: false}
           }
         ]
       }
@@ -206,19 +206,19 @@ export const constantRoutes: RouterTy = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: {title: 'Example', icon: 'example'},
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index.vue'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: {title: 'Table', icon: 'table'}
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index.vue'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: {title: 'Tree', icon: 'tree'}
       }
     ]
   },
@@ -230,7 +230,7 @@ export const constantRoutes: RouterTy = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index.vue'),
-        meta: { title: 'Form', icon: 'table' }
+        meta: {title: 'Form', icon: 'table'}
       }
     ]
   },
@@ -249,31 +249,31 @@ export const constantRoutes: RouterTy = [
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index.vue'), // Parent router-view
         name: 'Menu1',
-        meta: { title: 'Menu1' },
+        meta: {title: 'Menu1'},
         children: [
           {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
+            meta: {title: 'Menu1-1'}
           },
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2/index.vue'),
             name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
+            meta: {title: 'Menu1-2'},
             children: [
               {
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
                 name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
+                meta: {title: 'Menu1-2-1'}
               },
               {
                 path: 'menu1-2-2',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
                 name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
+                meta: {title: 'Menu1-2-2'}
               }
             ]
           },
@@ -281,7 +281,7 @@ export const constantRoutes: RouterTy = [
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3/index.vue'),
             name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
+            meta: {title: 'Menu1-3'}
           }
         ]
       },
@@ -289,7 +289,7 @@ export const constantRoutes: RouterTy = [
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index.vue'),
         name: 'Menu2',
-        meta: { title: 'menu2' }
+        meta: {title: 'menu2'}
       }
     ]
   },
@@ -298,9 +298,10 @@ export const constantRoutes: RouterTy = [
     component: Layout,
     children: [
       {
-        component: () => {},
+        component: () => {
+        },
         path: 'https://github.com/jzfai/vue3-admin-ts.git',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: {title: 'External Link', icon: 'link'}
       }
     ]
   }
@@ -369,14 +370,14 @@ export const asyncRoutes: RouterTy = [
 
       // 404 page must be placed at the end !!!
       // using pathMatch install of "*" in vue-router 4.0
-      { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
+      {path: '/:pathMatch(.*)', redirect: '/404', hidden: true}
     ]
   }
 ]
 
 const router: Router = createRouter({
   history: createWebHashHistory(),
-  scrollBehavior: () => ({ top: 0 }),
+  scrollBehavior: () => ({top: 0}),
   routes: constantRoutes
 })
 

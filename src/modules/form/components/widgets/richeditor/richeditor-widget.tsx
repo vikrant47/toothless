@@ -1,12 +1,15 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
-// import Markdown from '@/modules/form/components/widgets/richeditor/MarkDown.vue';
+import Markdown from '@/modules/form/components/widgets/richeditor/MarkDown.vue';
 import {EngineForm} from '@/modules/form/engine-api/engine.form';
 import {FormWidgetService} from '@/modules/form/services/form.widget.service';
 import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
 import {EnginePopup} from '@/modules/engine/services/engine.popup';
+import {Engine} from "@/modules/engine/core/engine";
+
 
 export default class RicheditorWidget extends BaseWidget {
   static heights = {small: '200px', medium: '300px', large: '500px'}
+  protected id = Engine.generateUniqueString();
   palletSettings = {
     label: 'Rich Editor',
     icon: 'edit',
@@ -46,7 +49,7 @@ export default class RicheditorWidget extends BaseWidget {
   getEvents() {
     const _this = this;
     return {
-      change(value) {
+      onChange(value) {
         _this.setValue(value);
       },
     };
@@ -60,20 +63,18 @@ export default class RicheditorWidget extends BaseWidget {
       return '100%';
     }
     return (
-      RicheditorWidget.heights[config.attrs.size] ||
+      RicheditorWidget.heights[config.size] ||
       RicheditorWidget.heights.small
     );
   }
 
   jsxRichEditorRender(h, config) {
     const options = {
-      on: this.getEvents(),
-      props: {
-        height: this.getHeight(config),
-        value: config.attrs.value,
-      },
+      ...this.getEvents(),
+      height: this.getHeight(config),
+      value: this.getValue(),
     };
-    // const markDown = h(Markdown, options, this.getChildren());
+    const markDown = h(Markdown, options, this.getChildren());
     return (
       <div class='rich-editor-wrapper' id={'rich-editor-wrapper' + this.id}>
         <el-button
@@ -157,7 +158,7 @@ export default class RicheditorWidget extends BaseWidget {
             });
           }}
         />
-        {/*{markDown}*/}
+        {markDown}
       </div>
     );
   }

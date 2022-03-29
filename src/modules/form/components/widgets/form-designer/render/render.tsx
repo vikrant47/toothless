@@ -1,5 +1,6 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
 import { h } from 'vue'
+import {ElCol, ElFormItem} from "element-plus";
 /*
 function vModel(dataObject, defaultValue) {
   dataObject.props.value = typeof dataObject.props.value === 'undefined' ? defaultValue : dataObject.props.value;
@@ -141,9 +142,9 @@ export default defineComponent({
     // @ts-ignore
     if (this.widget.designMode !== true) {
       // @ts-ignore
-      template = h('el-col', this.widget.getWrapperConfig(), [
+      template = h(ElCol, this.widget.getWrapperConfig(), [
         // @ts-ignore
-        h('el-form-item', this.widget.getFormItemConfig(), [
+        h(ElFormItem, this.widget.getFormItemConfig(), [
           // @ts-ignore
           this.widget.renderWidget(this, h),
         ]),

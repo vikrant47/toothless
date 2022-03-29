@@ -1,4 +1,5 @@
 import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElInputNumber} from "element-plus";
 
 export default class NumberWidget extends BaseWidget {
   overrideWidgetSettings() {
@@ -14,7 +15,7 @@ export default class NumberWidget extends BaseWidget {
 
   componentRender(component, h) {
     return h(
-      'el-input-number',
+      ElInputNumber,
       this.getComponentConfig(component),
       this.getChildren()
     );

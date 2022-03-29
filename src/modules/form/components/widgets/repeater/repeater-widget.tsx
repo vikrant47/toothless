@@ -3,8 +3,9 @@ import FormDesignerWidget from '@/modules/form/components/widgets/form-designer/
 import FormDesigner from '@/modules/form/components/widgets/form-designer/designer/FormDesigner.vue';
 import Parser from '@/modules/form/components/widgets/form-designer/render/Parser';
 import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
-import draggable from 'vuedraggable';
+import draggable from 'vue3-draggable';
 import _ from 'lodash';
+import {FormWidgetService} from "@/modules/form/services/form.widget.service";
 
 export default class RepeaterWidget extends FormDesignerWidget {
   forms
@@ -67,8 +68,6 @@ export default class RepeaterWidget extends FormDesignerWidget {
       marshalledWidget.widgetAlias = marshalledWidget.widgetAlias
         ? marshalledWidget.widgetAlias
         : WIDGETS.input;
-      const FormWidgetService =
-        require('../../../services/form.widget.service').FormWidgetService;
       const widget = new FormWidgetService().getWidgetInstance(marshalledWidget);
       return widget;
     });
@@ -165,13 +164,11 @@ export default class RepeaterWidget extends FormDesignerWidget {
                 style: {
                   padding: '0',
                 },
-                props: {engineForm: form, evalContext: {}},
-                on: {
-                  fieldValueUpdated: () => {
-                    const value = this.getValue();
-                    value[index] = form.getRecord();
-                    this.setValue(value);
-                  },
+                engineForm: form, evalContext: {},
+                onFieldValueUpdated: () => {
+                  const value = this.getValue();
+                  value[index] = form.getRecord();
+                  this.setValue(value);
                 },
               })}
             </div>

@@ -209,6 +209,7 @@ export default defineComponent({
       this.$emit('input', this.rule);
     },
     valueUpdated(value, index) {
+      if(value instanceof Event) return;
       const inputCount = this.getInputCount();
       if (inputCount > 1) {
         if (!this.rule.value) {

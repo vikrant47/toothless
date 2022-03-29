@@ -1,4 +1,5 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElTimeSelect} from "element-plus";
 
 export default class TimeWidget extends BaseWidget {
   palletSettings = {
@@ -51,7 +52,7 @@ export default class TimeWidget extends BaseWidget {
       );
     }
     return h(
-      'time-select',
+      ElTimeSelect,
       this.getComponentConfig(component),
       this.getChildren(component)
     );

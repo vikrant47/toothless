@@ -1,5 +1,6 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
 import IconsDialog from '@/modules/form/components/widgets/icon-picker/IconsDialog.vue';
+import {ElInput} from "element-plus";
 
 export default class IconPickerWidget extends BaseWidget {
   palletSettings = {
@@ -31,7 +32,7 @@ export default class IconPickerWidget extends BaseWidget {
       },
     };
     return h('div', {class: 'icon-widget'}, [
-      h('el-input', this.getComponentConfig(), [
+      h(ElInput, this.getComponentConfig(), [
         h('el-button', {
           slot: 'append',
           attrs: {type: 'primary', icon: 'elu-icon-thumb'},

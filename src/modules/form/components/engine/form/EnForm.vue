@@ -3,7 +3,7 @@
     <div v-if="toolbar" class="head-container">
       <en-form-toolbar :actions="engineForm.actions"/>
     </div>
-    <div class="form-parser-wrapper">
+    <div v-if="engineForm.definitionLoaded" class="form-parser-wrapper">
       <parser
         :key="engineForm.hashCode"
         :engine-form="engineForm"
@@ -26,8 +26,9 @@ import {FormEventHandler} from '@/modules/form/services/form.event.handler';
 import EnFormToolbar from '@/modules/form/components/engine/toolbar/EnFormToolbar.vue';
 import {FORM_EVENTS, FormEvent} from '@/modules/form/engine-api/form-events';
 import RelatedRecord from '@/modules/form/components/engine/form/RelatedRecord.vue';
+import {loadWidget} from "@/modules/form/components/widgets/base-widget/widget-types";
 
-export default {
+export default defineComponent({
   name: 'EnForm',
   components: {RelatedRecord, EnFormToolbar, Parser},
   props: {
@@ -104,6 +105,7 @@ export default {
     this.formEventHandler = new FormEventHandler(this);
   },
   async mounted() {
+    await loadWidget();
     await this.engineForm.loadDefinition();
     if (!this.engineForm.isNew()) {
       await this.engineForm.refresh();
@@ -131,7 +133,7 @@ export default {
     submitForm() {
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -1,4 +1,5 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElRadioGroup} from "element-plus";
 
 export default class RadioGroupWidget extends BaseWidget {
   palletSettings = {
@@ -26,7 +27,7 @@ export default class RadioGroupWidget extends BaseWidget {
 
   componentRender(component, h) {
     return h(
-      'el-radio-group',
+      ElRadioGroup,
       this.getComponentConfig(component),
       this.getChildren(h)
     );

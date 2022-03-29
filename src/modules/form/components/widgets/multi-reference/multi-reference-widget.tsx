@@ -232,7 +232,7 @@ export default class MultiReferenceWidget extends BaseWidget {
     if (this.widgetSettings.sortable && value) {
 
     }*/
-    Object.assign(config.attrs, {
+    Object.assign(config, {
       data: this.multiReferenceData,
       titles: ['Available', 'Selected'],
       rightDefaultChecked: this.checkedForSort,

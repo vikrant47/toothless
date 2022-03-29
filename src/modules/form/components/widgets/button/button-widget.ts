@@ -1,4 +1,5 @@
 import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElButton} from "element-plus";
 
 export default class ButtonWidget extends BaseWidget {
   fieldSettings = { type: 'primary' }
@@ -14,7 +15,7 @@ export default class ButtonWidget extends BaseWidget {
 
   componentRender(component, h) {
     return h(
-      'el-button',
+      ElButton,
       this.getComponentConfig(component),
       this.getChildren(h)
     );

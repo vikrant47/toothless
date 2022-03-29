@@ -103,9 +103,9 @@ export default class CodeEditorWidget extends RicheditorWidget {
   jsxRender(h, config) {
     this.width = config.width;
     this.height = config.height;
-    let value = config.attrs.value;
+    let value = config.value;
     if (value && config.parse === true && typeof value !== 'string') {
-      value = JSON.stringify(config.attrs.value);
+      value = JSON.stringify(config.value);
     }
     const options = {
       on: this.getEvents(config),

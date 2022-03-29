@@ -10,6 +10,7 @@ import {
 import {Engine} from '@/modules/engine/core/engine';
 import {loadWidget} from "@/modules/form/components/widgets/base-widget/widget-types";
 import render from '@/modules/form/components/widgets/form-designer/render/render';
+import {defineComponent} from 'vue'
 
 const ruleTrigger = {
   'el-input': 'blur',
@@ -39,7 +40,7 @@ const layouts = {
     return (
       <render
         widget={widgetInstance}
-        {...Object.assign({on: listeners})}
+        {...listeners}
         wrapper={true}
         form-model={formData}
         eval-context={this.context}
@@ -99,21 +100,20 @@ function renderFrom(h) {
           : 'form-parser'
       }
     >
-      <el-row gutter={formConf.gutter}>
-        <el-form
-          size={formConf.size}
-          label-position={formConf.labelPosition}
-          disabled={formConf.disabled}
-          label-width={`${formConf.labelWidth}px`}
-          ref={formConf.formRef}
-          // model cannot be assigned directly https://github.com/vuejs/jsx/issues/49#issuecomment-472013664
-          props={{model: this.formData}}
-          rules={this[formConf.formRules]}
-        >
+      <el-form size={formConf.size}
+               label-position={formConf.labelPosition}
+               disabled={formConf.disabled}
+               label-width={`${formConf.labelWidth}px`}
+               ref={formConf.formRef}
+        // model cannot be assigned directly https://github.com/vuejs/jsx/issues/49#issuecomment-472013664
+               props={{model: this.formData}}
+               rules={this[formConf.formRules]}
+      >
+        <el-row gutter={formConf.gutter}>
           {renderFormItem.call(this, h, formConf.widgets, this.formModel)}
           {formConf.formBtns && formBtns.call(this, h)}
-        </el-form>
-      </el-row>
+        </el-row>
+      </el-form>
     </div>
   );
 }
@@ -186,30 +186,32 @@ function bulkUpdateValue(value, config, widget) {
 }
 
 function setValue(event, config, widget) {
-  if (typeof event !== 'undefined') {
-    const previousValue = _.get(this.formData, widget.fieldName);
-    // config[ 'defaultValue'] =  event;
-    if (previousValue !== event) {
-      // TODO: handle concurrent field value update here using debounce
-      if (widget.fieldName.indexOf('.') > 0) {
-        const result = TemplateEngine.walk(widget.fieldName, this.formData, -1);
-        result.value[result.prop] = event;
-        // delete this.formData[widget.fieldName];
-      } else {
-        this.formData[widget.fieldName] = event;
+  /*nextTick(() => {
+    if (typeof event !== 'undefined') {
+      const previousValue = _.get(this.formData, widget.fieldName);
+      // config[ 'defaultValue'] =  event;
+      if (previousValue !== event) {
+        // TODO: handle concurrent field value update here using debounce
+        if (widget.fieldName.indexOf('.') > 0) {
+          const result = TemplateEngine.walk(widget.fieldName, this.formData, -1);
+          result.value[result.prop] = event;
+          // delete this.formData[widget.fieldName];
+        } else {
+          this.formData[widget.fieldName] = event;
+        }
+        this.engineForm.setRecord(this.formData);
+        this.$emit('fieldValueUpdated', widget, event);
+        this.engineForm.triggerProcessors(
+          new WidgetEvent(FORM_EVENTS.widget.updateValue, widget, {
+            previous: previousValue,
+            current: event,
+            value: event,
+          }),
+          {}
+        );
       }
-      this.engineForm.setRecord(this.formData);
-      this.$emit('fieldValueUpdated', widget, event);
-      this.engineForm.triggerProcessors(
-        new WidgetEvent(FORM_EVENTS.widget.updateValue, widget, {
-          previous: previousValue,
-          current: event,
-          value: event,
-        }),
-        {}
-      );
     }
-  }
+  })*/
 }
 
 function setWidgetData(event, config, widget) {
@@ -227,9 +229,9 @@ function buildListeners(widget) {
     listeners[key] = (event) => methods[key].call(this, event);
   });
   // response render.js Neutral vModel $emit('input', val)
-  listeners.bulk_input_update = (event) =>
+  listeners.onBulk_input_update = (event) =>
     bulkUpdateValue.call(this, event, config, widget);
-  listeners.input_update = (event) => setValue.call(this, event, config, widget);
+  listeners.onInput_update = (event) => setValue.call(this, event, config, widget);
   listeners['widget-data'] = (event) =>
     setWidgetData.call(this, event, config, widget);
 

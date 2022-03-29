@@ -13,17 +13,22 @@
 
 <script lang="ts">
 import EnForm from '@/modules/form/components/engine/form/EnForm.vue';
+import {useRoute} from 'vue-router'
 
 export default {
   name: 'FormRenderer',
-  components: { EnForm },
-  props: {
-    modelAlias: { type: String, default: null },
-    recordId: { type: String, default: 'new' },
-    formId: { type: String, default: 'default' },
-    view: { type: String, default: 'edit' },
+  components: {EnForm},
+  data() {
+    const route = useRoute();
+    return {
+      modelAlias: route.params.modelAlias,
+      recordId: route.params.recordId,
+      formId: route.params.formId,
+      view: route.params.view,
+    }
   },
-  beforeCreate() {},
+  beforeCreate() {
+  },
 };
 </script>
 

@@ -31,8 +31,12 @@ export default defineComponent({
     },
   },
   data() {
+    const formData = {[this.$props['widget'].fieldName]: this.value};
+    const engineForm = this.$props['engineForm'] || new EngineForm();
+    // engineForm.setRecord(formData);
     return {
-      formData: {[this.$props['widget'].fieldName]: this.value},
+      formData,
+      engineForm,
     };
   },
   watch: {
@@ -92,18 +96,18 @@ export default defineComponent({
           result.value[result.prop] = event;
           delete this.formData[widget.fieldName];
         } else {
-          this.formData[widget.fieldName] = event;
+          _.set(this.formData,widget.fieldName, event);
         }
-        this.$props['engineForm'].setRecord(this.formData);
+       /* this.engineForm.setRecord(this.formData);
         this.$emit('fieldValueUpdated', widget, event);
-        this.$props['engineForm'].triggerProcessors(
+        this.engineForm.triggerProcessors(
           new WidgetEvent(FORM_EVENTS.widget.updateValue, widget, {
             previous: previousValue,
             current: event,
             value: event,
           }),
           {}
-        );
+        );*/
       }
     },
   },
@@ -113,7 +117,7 @@ export default defineComponent({
       Engine.clone(this.sanitizeWidget()),
       engineForm
     );
-    Object.assign(this.formData, engineForm.getRecord());
+    // Object.assign(this.formData, engineForm.getRecord());
     return (
       <div class='field-wrapper'>
         <el-form
@@ -122,7 +126,7 @@ export default defineComponent({
             $event.preventDefault();
           }}
           // model cannot be assigned directly https://github.com/vuejs/jsx/issues/49#issuecomment-472013664
-          props={{model: this.formData}}
+          model={ this.formData}
         >
           <render
             widget={widgetInstance}

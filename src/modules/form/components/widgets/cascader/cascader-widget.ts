@@ -1,4 +1,5 @@
 import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElCascader} from "element-plus";
 
 export default class CascaderWidget extends BaseWidget {
   palletSettings = {
@@ -8,7 +9,7 @@ export default class CascaderWidget extends BaseWidget {
 
   componentRender(component, h) {
     return h(
-      'el-cascader',
+      ElCascader,
       this.getComponentConfig(component),
       this.getChildren()
     );

@@ -143,7 +143,7 @@ export class EngineForm extends EngineDefinitionService {
     let widgets: any[] = [];
     for (const widget of widgetConfig) {
       widgets.push(widget);
-      if (widget.widgetSettings.containsChild === true) {
+      if (widget?.widgetSettings?.containsChild === true) {
         widgets = widgets.concat(
           this.getAllWidgets(widget.widgetSettings.children)
         );
@@ -311,6 +311,7 @@ export class EngineForm extends EngineDefinitionService {
         this.disableLoading();
       }, this.settings.loaderDelay);
       this.emit(FORM_EVENTS.definition.fetch, this.definition);
+      this.definitionLoaded = true;
     } catch (err) {
       this.disableLoading();
       this.emit(FORM_EVENTS.form.error, err);

@@ -13,6 +13,7 @@ import {EngineObservable} from '@/modules/engine/core/engine.observable';
 import {EngineScript} from '@/modules/engine/core/engine.script';
 import {EngineForm} from "@/modules/form/engine-api/engine.form";
 import {FormWidgetService} from "@/modules/form/services/form.widget.service";
+import {ElInput} from "element-plus";
 
 export class BaseWidget extends EngineObservable {
   static defaultPalletSettings = {
@@ -317,13 +318,9 @@ export class BaseWidget extends EngineObservable {
           this.renderComponent.formModel,
           -1
         );
-        this.renderComponent.$set(result.value, result.prop, value);
+        result.value[result.prop] = value;
       }
-      this.renderComponent.$set(
-        this.renderComponent.formModel,
-        this.fieldName,
-        value
-      );
+      this.renderComponent.formModel[this.fieldName] = value
       this.renderComponent.$emit('input', value);
       // BaseWidget.debouncedCallbacks.bulkUpdate(this.renderComponent, value);
       this.renderComponent.$emit('input_update', value);
@@ -439,9 +436,7 @@ export class BaseWidget extends EngineObservable {
 
   getWrapperConfig() {
     Object.assign(this.wrapperConfig, {
-      attrs: {
-        span: this.widgetSettings.span,
-      },
+      span: this.widgetSettings.span,
       style: {
         display: this.widgetSettings.visible ? 'block' : 'none',
       },
@@ -456,12 +451,10 @@ export class BaseWidget extends EngineObservable {
         : BaseWidget.defaultWidgetSettings.labelWidth;
     if (this.widgetSettings.showLabel === false) labelWidth = '0';
     Object.assign(this.formItemConfig, {
-      attrs: {
-        labelWidth: labelWidth ? `${labelWidth}px` : null,
-        prop: this.fieldName,
-        label: this.widgetSettings.showLabel ? this.widgetSettings.label : '',
-        required: this.widgetSettings.required,
-      },
+      labelWidth: labelWidth ? `${labelWidth}px` : null,
+      prop: this.fieldName,
+      label: this.widgetSettings.showLabel ? this.widgetSettings.label : '',
+      required: this.widgetSettings.required,
     });
     return this.formItemConfig;
   }
@@ -474,14 +467,15 @@ export class BaseWidget extends EngineObservable {
     fieldSettings.name = this.fieldName;
     // this.fieldSettings['value'] = this.formModel[this.fieldName];
     // this.fieldSettings['v-model'] = this.fieldName;
-    fieldSettings.value = _.get(this.formModel, this.fieldName);
-    if (typeof fieldSettings.value === 'undefined') {
-      fieldSettings.value = widgetSettings.defaultValue;
+    fieldSettings['model-value'] = _.get(this.formModel, this.fieldName);
+    if (typeof fieldSettings['model-value'] === 'undefined') {
+      fieldSettings['model-value'] = widgetSettings.defaultValue;
     }
     Object.assign(
       this.componentConfig,
-      {attrs: fieldSettings, on: {}},
-      widgetSettings
+      fieldSettings,
+      widgetSettings,
+      {on: {}},
     );
     this.componentConfig.on.input = (val) => {
       // this.getMethods(); // TODO: remove this - just reference for debugging
@@ -492,6 +486,10 @@ export class BaseWidget extends EngineObservable {
     };
     Object.assign(this.componentConfig.on, this.getEvents(this.componentConfig));
     // console.log('setting value for field ', this.fieldName, this.formModel, config);
+    for (const eventName in this.componentConfig.on) {
+      this.componentConfig[`on${_.startCase(eventName)}`] = this.componentConfig.on[eventName];
+    }
+    delete this.componentConfig.on;
     return this.componentConfig;
   }
 
@@ -608,7 +606,7 @@ export class BaseWidget extends EngineObservable {
   }
 
   componentRender(component, h) {
-    return h('el-input', this.getComponentConfig(), this.getChildren(h));
+    return h(ElInput, this.getComponentConfig(), this.getChildren(h));
   }
 
   renderWidget(component, h) {

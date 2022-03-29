@@ -2,6 +2,7 @@ import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-w
 import { ITEM_LAYOUT } from '@/modules/form/components/widgets/base-widget/widget-config';
 import { WIDGETS } from '@/modules/form/components/widgets/base-widget/widgets';
 import { Engine } from '@/modules/engine/core/engine';
+import {ElRow} from "element-plus";
 
 export default class RowWidget extends BaseWidget {
   constructor() {
@@ -112,6 +113,6 @@ export default class RowWidget extends BaseWidget {
   }
 
   componentRender(component, h) {
-    return h('el-row', {}, this.getChildren());
+    return h(ElRow, {}, this.getChildren());
   }
 }

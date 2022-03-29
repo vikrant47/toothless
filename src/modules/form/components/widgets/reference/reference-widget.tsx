@@ -2,6 +2,7 @@ import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-wid
 import {RestQuery} from '@/modules/engine/services/rest.query';
 import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
 import {EngineScript} from '@/modules/engine/core/engine.script';
+import {ElSelect} from "element-plus";
 
 export default class ReferenceWidget extends BaseWidget {
   loading = false
@@ -136,9 +137,7 @@ export default class ReferenceWidget extends BaseWidget {
             return response.contents;
           }
         );
-        _this.renderComponent.$set(
-          _this.slot,
-          'options',
+        _this.slot.options =
           result.map((rec) => {
             if (_this.isWidgetWithField()) {
               // store only id
@@ -154,8 +153,7 @@ export default class ReferenceWidget extends BaseWidget {
                 value: rec[_this.widgetSettings.referenced_field_name],
               }),
             };
-          })
-        );
+          });
         fieldSettings.loading = false;
         _this.repaint();
       },
@@ -190,9 +188,16 @@ export default class ReferenceWidget extends BaseWidget {
         }
       }
     }
+    const config = this.getComponentConfig(component);
+    config.onInput = () => {
+    };
+    config.onChange = (event) => {
+      this.setValue(event);
+      this.repaint();
+    };
     return h(
-      'el-select',
-      this.getComponentConfig(component),
+      ElSelect,
+      config,
       this.getChildren(h)
     );
   }

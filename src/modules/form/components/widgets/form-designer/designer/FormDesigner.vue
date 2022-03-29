@@ -314,7 +314,7 @@ export default {
     },
     updateValue() {
       const value = Engine.clone(this.drawingList);
-      this.$emit('input', {
+      this.$emit('update:modelValue', {
         widgets: value,
       }); // emitting event to top form item
       this.updateAllSelectedItems({ palletSettings: { hidden: true }});

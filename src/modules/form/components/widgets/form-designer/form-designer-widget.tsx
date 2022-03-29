@@ -74,7 +74,7 @@ export default class FormDesignerWidget extends BaseWidget {
             },
           },
           props: {
-            value: config.attrs.value,
+            value: config.value,
             pallet: this.getPallet(config),
           },
         },

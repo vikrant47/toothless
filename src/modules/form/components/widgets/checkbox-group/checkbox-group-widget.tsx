@@ -1,4 +1,5 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElCheckbox} from "element-plus";
 
 export default class CheckboxGroupWidget extends BaseWidget {
   palletSettings = {
@@ -28,7 +29,7 @@ export default class CheckboxGroupWidget extends BaseWidget {
 
   componentRender(component, h) {
     return h(
-      'el-checkbox',
+      ElCheckbox,
       this.getComponentConfig(component),
       this.getChildren()
     );

@@ -190,6 +190,7 @@ export default defineComponent({
       this.queryUpdated();
     },
     ruleUpdated(rule) {
+      if(rule instanceof Event) return;
       for (const existingRule of this.query.rules) {
         if (existingRule.id === rule.id) {
           Object.assign(existingRule, rule);

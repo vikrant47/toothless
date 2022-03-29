@@ -1,4 +1,5 @@
 import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElColorPicker} from "element-plus";
 
 export default class colorPickerWidget extends BaseWidget {
   palletSettings = {
@@ -8,7 +9,7 @@ export default class colorPickerWidget extends BaseWidget {
 
   componentRender(component, h) {
     return h(
-      'el-color-picker',
+      ElColorPicker,
       this.getComponentConfig(component),
       this.getChildren()
     );

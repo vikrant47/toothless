@@ -1,4 +1,5 @@
 import { BaseWidget } from '@/modules/form/components/widgets/base-widget/base-widget';
+import {ElDatePicker} from "element-plus";
 
 export default class DateWidget extends BaseWidget {
   palletSettings = {
@@ -39,7 +40,7 @@ export default class DateWidget extends BaseWidget {
 
   componentRender(component, h) {
     return h(
-      'el-date-picker',
+     ElDatePicker,
       this.getComponentConfig(component),
       this.getChildren()
     );

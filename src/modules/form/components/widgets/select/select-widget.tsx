@@ -1,5 +1,6 @@
 import {BaseWidget} from '@/modules/form/components/widgets/base-widget/base-widget';
 import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
+import {ElSelect} from "element-plus";
 
 export default class SelectWidget extends BaseWidget {
   palletSettings = {
@@ -102,6 +103,6 @@ export default class SelectWidget extends BaseWidget {
   componentRender(component, h) {
     const config = this.getComponentConfig();
     Object.assign(config, {filterable: true});
-    return h('el-select', config, this.getChildren(h));
+    return h(ElSelect, config, this.getChildren(h));
   }
 }

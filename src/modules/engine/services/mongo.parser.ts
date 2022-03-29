@@ -869,6 +869,7 @@ export class MongoParser {
         return keys[i];
       }
     }
-    return 'null';
+    //@ts-ignore
+    return null;
   }
 }

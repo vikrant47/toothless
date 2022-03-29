@@ -75,7 +75,7 @@ export default {
     onSelect(icon) {
       this.active = icon;
       this.$emit('select', icon);
-      this.$emit('update:visible', false);
+      this.$emit('input', false);
     },
   },
 };

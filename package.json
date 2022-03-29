@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@braks/vue-flow": "^0.3.1",
+    "@ckeditor/ckeditor5-build-classic": "^33.0.0",
+    "@ckeditor/ckeditor5-vue": "^3.0.0",
     "@element-plus/icons": "0.0.11",
     "@element-plus/icons-vue": "0.2.4",
     "axios": "^0.26.0",
@@ -23,17 +25,18 @@
     "echarts": "4.2.1",
     "element-plus": "^2.0.2",
     "expression-eval": "^5.0.0",
+    "lodash": "^4.17.21",
     "luxon": "^2.3.1",
     "mitt": "3.0.0",
     "moment-mini": "^2.22.1",
     "nprogress": "0.2.0",
     "path": "0.12.7",
     "path-to-regexp": "^6.2.0",
-    "tinymce": "4.9.11",
     "vue": "^3.2.31",
     "vue-cron-generator": "^0.2.3",
     "vue-monaco": "^1.2.2",
     "vue-router": "4.0.12",
+    "vue3-draggable": "^2.0.9",
     "vuex": "4.0.2"
   },
   "devDependencies": {
