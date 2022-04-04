@@ -24,12 +24,12 @@
         :width="column.config.width"
         :min-width="column.config.minWidth"
       >
-<!--        <template #header>
-          <div class="header-label">
-            <span>{{ scope.column.label }}</span>
-          </div>
-          <slot name="header"/>
-        </template>-->
+        <!--        <template #header>
+                  <div class="header-label">
+                    <span>{{ scope.column.label }}</span>
+                  </div>
+                  <slot name="header"/>
+                </template>-->
         <template #default="{ row }">
           <component
             :is="column.config.widget"
@@ -52,6 +52,7 @@
 import {EngineList} from '@/modules/list/engine-api/engine.list';
 // import EnPagination from '@/modules/list/components/pagination/EnPagination.vue';
 import {ListEventHandler} from '@/modules/list/services/list.event.handler';
+import {LIST_EVENTS} from "@/modules/list/engine-api/list-events";
 
 export default defineComponent({
   name: 'TabularListView',
@@ -74,6 +75,9 @@ export default defineComponent({
   mounted() {
     this.engineList.refresh().then(() => {
       // Vue.set(this, 'engineList', engineList);
+    });
+    this.engineList.on(LIST_EVENTS.model.fetch,()=>{
+      this.$forceUpdate();
     });
   },
   methods: {

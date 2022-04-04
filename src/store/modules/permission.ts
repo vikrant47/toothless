@@ -1,8 +1,8 @@
-import { constantRoutes, asyncRoutes } from '@/router'
+import {constantRoutes, asyncRoutes} from '@/router'
 import settings from '@/settings'
-import { PermissionTy } from '~/store'
-import { RouteItemTy, RouterRowTy, RouterTy } from '~/router'
-import { ObjTy } from '~/common'
+import {PermissionTy} from '~/store'
+import {RouteItemTy, RouterRowTy, RouterTy} from '~/router'
+import {ObjTy} from '~/common'
 
 /**
  * Use meta.code to determine if the current user has permission
@@ -16,6 +16,7 @@ function hasCodePermission(codeArr: Array<number>, routeItem: RouteItemTy) {
     return true
   }
 }
+
 /**
  * Use meta.code to determine if the current user has permission
  * @param codeArr
@@ -57,7 +58,7 @@ function hasPermission(roles: Array<string>, route: RouteItemTy) {
 export function filterAsyncRoutes(routes: RouterTy, roles: Array<string>) {
   const res: RouterTy = []
   routes.forEach((route) => {
-    const tmp = { ...route }
+    const tmp = {...route}
     if (hasPermission(roles, tmp)) {
       if (tmp.children) {
         tmp.children = filterAsyncRoutes(tmp.children, roles)
@@ -76,7 +77,9 @@ const state: PermissionTy = {
 }
 
 const actions = {
-  generateRoutes({ commit }: ObjTy, roles: Array<string>) {
+  async generateRoutes({commit}: ObjTy, roles: Array<string>) {
+    /*const {NavigationService} = await import("@/modules/navigation/services/navigation.service");
+    return NavigationService.getAllNavigations('sidebar');*/
     return new Promise(async (resolve) => {
       let accessedRoutes
       if (settings.permissionMode === 'roles') {
@@ -105,9 +108,10 @@ const actions = {
 }
 
 const mutations = {
-  M_routes: (state: PermissionTy, routes: RouterTy) => {
+  M_routes: async (state: PermissionTy, routes: RouterTy) => {
+    const {NavigationService} = await import("@/modules/navigation/services/navigation.service");
     state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
+    state.routes = await NavigationService.getInstance('sidebar').getNavigations();
   },
   M_isGetUserInfo: (state: PermissionTy, data: boolean) => {
     state.isGetUserInfo = data

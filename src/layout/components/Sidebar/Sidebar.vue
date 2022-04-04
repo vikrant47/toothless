@@ -1,7 +1,7 @@
 <template>
   <div id="Sidebar" class="reset-menu-style">
     <!--logo-->
-    <Logo v-if="settings.sidebarLogo" :collapse="!isCollapse" />
+    <Logo v-if="settings.sidebarLogo" :collapse="!isCollapse"/>
     <!--router nav-->
     <el-scrollbar>
       <el-menu
@@ -15,7 +15,12 @@
         :active-text-color="scssJson.menuActiveText"
         mode="vertical"
       >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item
+          v-for="route in routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+          :is-nest="route.children.length>0"/>
       </el-menu>
     </el-scrollbar>
   </div>
@@ -55,10 +60,11 @@ const dillScssExportToJson = (scssExportJson: any) => {
 
 //get scss variable
 import scssExportJson from '@/styles/variables-to-js.scss'
-import { ObjTy } from '~/common'
+import {ObjTy} from '~/common'
+
 const scssJson = dillScssExportToJson(scssExportJson)
 const activeMenu = computed(() => {
-  const { meta, fullPath } = route
+  const {meta, fullPath} = route
   // if set path, the sidebar will highlight the path you set
   if (meta.activeMenu) {
     return meta.activeMenu
@@ -72,6 +78,7 @@ const activeMenu = computed(() => {
   .el-menu {
     border-right: none;
   }
+
   .el-scrollbar__wrap {
     padding-bottom: 10vh;
   }

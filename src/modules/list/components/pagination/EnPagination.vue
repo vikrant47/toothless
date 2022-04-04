@@ -9,8 +9,8 @@
         :page-sizes="paginationModel.pageSizes"
         style="margin-top: 8px"
         layout="total, sizes, prev, pager, next, jumper"
-        @size-change="paginationModel.currentChange()"
-        @current-change="paginationModel.sizeChange()"
+        @size-change="paginationModel.sizeChange()"
+        @current-change="paginationModel.currentChange()"
       />
       <el-button
         class="pagination-refresh"

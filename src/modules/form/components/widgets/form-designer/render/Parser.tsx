@@ -186,7 +186,7 @@ function bulkUpdateValue(value, config, widget) {
 }
 
 function setValue(event, config, widget) {
-  /*nextTick(() => {
+  nextTick(() => {
     if (typeof event !== 'undefined') {
       const previousValue = _.get(this.formData, widget.fieldName);
       // config[ 'defaultValue'] =  event;
@@ -211,7 +211,7 @@ function setValue(event, config, widget) {
         );
       }
     }
-  })*/
+  })
 }
 
 function setWidgetData(event, config, widget) {

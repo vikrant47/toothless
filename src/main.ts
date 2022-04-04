@@ -4,10 +4,11 @@ import App from './App.vue'
 const app = createApp(App)
 import router from './router'
 import '@/styles/index.scss' // global css
+import '@/styles/custom.scss' // global css
 import CKEditor from '@ckeditor/ckeditor5-vue';
 //import vuex
 import store from './store'
-
+import draggable from 'vuedraggable'
 app.use(store)
 
 //import element-plus
@@ -49,12 +50,15 @@ import './permission'
 import ElSvgIcon from "@/components/ElSvgIcon.vue"
 
 app.component("ElSvgIcon", ElSvgIcon)
+app.component("draggable", draggable)
+app.component("MonacoEditor", MonacoEditor)
 
 
 //error log  collection
 import errorLog from '@/hooks/useErrorLog'
 import {EngineScript} from "@/modules/engine/core/engine.script";
 import {loadWidget} from "@/modules/form/components/widgets/base-widget/widget-types";
+import MonacoEditor from 'vue-monaco';
 // load all dependencies
 setTimeout(async () => {
   await EngineScript.loadDefaultContext();

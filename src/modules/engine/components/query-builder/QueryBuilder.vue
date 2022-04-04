@@ -2,7 +2,7 @@
   <div class="en-query-builder">
     <div class="en-query-builder-wrapper">
       <div class="query-toolbar">
-        <el-radio-group v-model="query.condition" size="mini">
+        <el-radio-group v-model="query.condition" size="small">
           <el-radio-button model-value="AND" label="AND">AND</el-radio-button>
           <el-radio-button model-value="OR" label="OR">OR</el-radio-button>
         </el-radio-group>
@@ -11,7 +11,7 @@
             type="success"
             plain
             :icon="EluIconPlus"
-            size="mini"
+            size="small"
             @click="addRule()"
           >Rule
           </el-button>
@@ -19,7 +19,7 @@
             type="success"
             plain
             :icon="EluIconDocumentAdd"
-            size="mini"
+            size="small"
             @click="addGroup()"
           >Group
           </el-button>
@@ -27,7 +27,7 @@
             type="danger"
             plain
             :icon="EluIconDelete"
-            size="mini"
+            size="small"
             @click="removeGroup()"
           />
         </div>

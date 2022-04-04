@@ -29,7 +29,7 @@
           <el-popover placement="bottom-end" width="150" trigger="click">
             <el-button
               :type="!allColumnsSelected ? 'info' : ''"
-              size="mini"
+              size="small"
               :icon="EluIconSGrid"
             >
               <i class="fa fa-caret-down" aria-hidden="true"/>
@@ -71,7 +71,6 @@
       title="Search"
       direction="rtl"
       :before-close="handleSearchClose"
-      :modal-append-to-body="false"
       variant="temporary"
       size="40%"
     >
@@ -97,13 +96,14 @@ import EnAction from '@/modules/engine/components/EnAction.vue';
 import {LIST_EVENTS, ListEvent} from '@/modules/list/engine-api/list-events';
 import {EngineList} from '@/modules/list/engine-api/engine.list';
 import QueryBuilder from '@/modules/engine/components/query-builder/QueryBuilder.vue';
+import {shallowRef, ref, computed} from 'vue'
 
 export default defineComponent({
   name: 'EnListToolbar',
   components: {
     QueryBuilder,
     EnAction,
-    EluIconSearch,
+    EluIconSearch: shallowRef(EluIconSearch),
   },
   props: {
     engineList: {

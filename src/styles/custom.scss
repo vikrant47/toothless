@@ -193,7 +193,9 @@
   border-radius: 5px;
   padding: 10px;
   background: #1e1d1d08;
-
+  .form-parser .el-form-item{
+    padding-left: 0;
+  }
   .el-form-item--small.el-form-item {
     margin-bottom: 0;
 

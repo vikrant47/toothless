@@ -70,7 +70,7 @@
               type="danger"
               plain
               :icon="EluIconDelete"
-              size="mini"
+              size="small"
               @click="removeRule(rule)"
             />
           </div>

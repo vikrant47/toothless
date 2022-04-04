@@ -7,15 +7,15 @@ import $router from '@/router';
 import {Engine} from '@/modules/engine/core/engine';
 import {EngineAction} from '@/modules/engine/core/engine.action';
 
-export const NavComponentMapping = {
+/*export const NavComponentMapping = {
   folder: Layout,
   list: ListView,
   // form: FormView,
   dashboard: DashboardView,
-  /* widget:,
+  /!* widget:,
   uipage:,
-  iframe: Iframe*/
-};
+  iframe: Iframe*!/
+};*/
 export const NavRoutConfig = {
   folder: {
     path: '',
@@ -48,7 +48,7 @@ export class NavigationService {
   }
 
   /** @return NavigationService*/
-  static getInstance(position = 'sidebar') {
+  static getInstance(position = 'sidebar'): NavigationService {
     return NavigationService.instances[position];
   }
 
@@ -79,7 +79,7 @@ export class NavigationService {
     return this.navigations;
   }
 
-  static getAllNavigations(position?: string) {
+  static getAllNavigations(position?: string): Promise<any> {
     if (!this.navPromise) {
       this.navPromise = new Promise((resolve, reject) => {
         if (this.allNavigations.length === 0) {
@@ -227,17 +227,7 @@ export class NavigationService {
     params = {},
     newWindow = false
   ) {
-    const url =
-      '/models/' +
-      modelAlias +
-      '/form/' +
-      formId +
-      '/' +
-      recordId +
-      '/' +
-      view +
-      '?' +
-      Engine.toUrlParam(params);
+    const url = '/models/' + modelAlias + '/form/' + formId + '/' + recordId + '/' + view + '?' + Engine.toUrlParam(params);
     if (newWindow) {
       return window.open(url);
     }
@@ -251,15 +241,7 @@ export class NavigationService {
     params = {},
     newWindow = false
   ) {
-    const url =
-      '/models/' +
-      modelAlias +
-      '/form/' +
-      listId +
-      '/' +
-      view +
-      '?' +
-      Engine.toUrlParam(params);
+    const url = '/models/' + modelAlias + '/form/' + listId + '/' + view + '?' + Engine.toUrlParam(params);
     if (newWindow) {
       return window.open(url);
     }

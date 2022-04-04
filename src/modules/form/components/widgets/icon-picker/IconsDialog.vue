@@ -3,7 +3,6 @@
     <el-dialog
       v-bind="$attrs"
       width="980px"
-      :modal-append-to-body="false"
       v-on="$listeners"
       @open="onOpen"
       @close="onClose"
@@ -12,7 +11,7 @@
         Select icon
         <el-input
           v-model="key"
-          size="mini"
+          size="small"
           :style="{ width: '260px' }"
           placeholder="Please enter the icon name"
           :prefix-icon="EluIconSearch"

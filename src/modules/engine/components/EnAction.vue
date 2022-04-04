@@ -9,7 +9,6 @@
         :id="action.id"
         class="parent-action action"
         :type="action.style.type"
-        :children="action.children"
         :name="action.name"
         :icon="action.style.icon"
         :label="action.label"
@@ -52,7 +51,6 @@
       "
       :id="action.id"
       :type="action.style.type"
-      :children="action.children"
       :name="action.name"
       :icon="action.style.icon"
       :label="action.label"
@@ -97,7 +95,9 @@ export default defineComponent({
     },
   },
   data() {
-    return {};
+    return {
+      loading: false,
+    };
   },
   created() {
   },

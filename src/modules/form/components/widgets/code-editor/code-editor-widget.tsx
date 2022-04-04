@@ -1,6 +1,6 @@
-import MonacoEditor from 'vue-monaco';
 import {WIDGETS} from '@/modules/form/components/widgets/base-widget/widgets';
 import RicheditorWidget from '@/modules/form/components/widgets/richeditor/richeditor-widget';
+import MonacoEditor from 'vue-monaco';
 
 export default class CodeEditorWidget extends RicheditorWidget {
   formItemConfig = {}
@@ -119,9 +119,13 @@ export default class CodeEditorWidget extends RicheditorWidget {
         value: value || '',
       },
     };
+    const render = MonacoEditor.render;
+    MonacoEditor.render = function () {
+      return render.call(this, h);
+    }
     const vEditor = h(MonacoEditor, options);
     setTimeout(() => {
-      const editor = vEditor.componentInstance.getEditor();
+      const editor = vEditor.component.ctx.editor;
       if (editor) {
         editor.layout();
       }
@@ -156,7 +160,7 @@ export default class CodeEditorWidget extends RicheditorWidget {
               this.fullscreen = false;
             }
             setTimeout(() => {
-              const editor = vEditor.componentInstance.getEditor();
+              const editor = vEditor.component.ctx.editor;
               editor.layout();
             }, 500);
             return false;

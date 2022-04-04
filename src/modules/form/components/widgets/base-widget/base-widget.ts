@@ -63,7 +63,7 @@ export class BaseWidget extends EngineObservable {
     showStops: false,
     range: false,
     multiple: false,
-    size: 'medium',
+    size: 'default',
   }
   designMode = false
   static transient = [

@@ -1,14 +1,14 @@
 <template>
   <template v-if="!item.hidden">
     <template v-if="showSidebarItem(item.children, item)">
-      <Link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{ 'submenu-title-noDropdown': !isNest }">
-          <item :meta="onlyOneChild.meta || item.meta" />
-          <template #title>{{ onlyOneChild.meta?.title }}</template>
+      <Link v-if="item.meta" :to="item.path">
+        <el-menu-item :index="item.path" :class="{ 'submenu-title-noDropdown': !isNest }">
+          <item :meta="item.meta || item.meta" />
+          <template #title>{{ item.meta?.title }}</template>
         </el-menu-item>
       </Link>
     </template>
-    <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
+    <el-sub-menu v-else ref="subMenu" :index="item.path" popper-append-to-body>
       <template v-if="item.meta" #title>
         <item :meta="item.meta" />
         <span>{{ item.meta.title }}</span>
@@ -18,7 +18,7 @@
         :key="child.path"
         :is-nest="true"
         :item="child"
-        :base-path="resolvePath(child.path)"
+        :base-path="child.path"
       />
     </el-sub-menu>
   </template>
@@ -80,7 +80,7 @@ const resolvePath = (routePath: string) => {
   if (isExternal(props.basePath)) {
     return props.basePath
   }
-  return path.resolve(props.basePath, routePath)
+  return path;// .resolve(props.basePath, routePath)
 }
 </script>
 

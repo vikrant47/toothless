@@ -1,10 +1,10 @@
-import path, { resolve } from 'path'
+import path, {resolve} from 'path'
 import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import viteSvgIcons from 'vite-plugin-svg-icons'
 //mock
-import { viteMockServe } from 'vite-plugin-mock'
+import {viteMockServe} from 'vite-plugin-mock'
 
 //setup name
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
@@ -17,10 +17,13 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import AutoImport from 'unplugin-auto-import/vite'
 
 import setting from './src/settings'
+import monacoEditorPlugin from "vite-plugin-monaco-editor"
+
 const prodMock = setting.openProdMock
+
 // import packageJson from './package.json'
 // import { loadEnv } from 'vite'
-export default ({ command, mode }: any) => {
+export default ({command, mode}: any) => {
   return {
     /*
      * "/vue3-admin-plus" nginx deploy folder
@@ -42,7 +45,7 @@ export default ({ command, mode }: any) => {
     },
     clearScreen: false,
     server: {
-      hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
+      hmr: {overlay: false}, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
       // 服务配置
       port: 5003, // 类型： number 指定服务器端口;
       open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
@@ -59,6 +62,14 @@ export default ({ command, mode }: any) => {
     plugins: [
       vue(),
       vueJsx(),
+      monacoEditorPlugin({
+        // https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+        // Include a subset of languages support
+        // Some language extensions like typescript are so huge that may impact build performance
+        // e.g. Build full languages support with webpack 4.0 takes over 80 seconds
+        // Languages are loaded on demand at runtime
+        // languages: ['javascript', 'css', 'html', 'typescript']
+      }),
       // legacy({
       //   targets: ['ie >= 11'],
       //   additionalLegacyPolyfills: ['regenerator-runtime/runtime']
