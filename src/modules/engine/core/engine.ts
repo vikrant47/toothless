@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import {v4 as uuidv4} from 'uuid';
 
 export class Engine {
   /** Constants */
@@ -29,6 +30,10 @@ export class Engine {
 
   static notify(vm, options) {
     vm.$notify(Object.assign({}, Engine.DEFAULT_SETTINGS.notification, options));
+  }
+
+  static uuid(): string {
+    return uuidv4();
   }
 
   static generateUniqueString(prefix = 'ID_') {

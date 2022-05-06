@@ -3,7 +3,6 @@
     <el-dialog
       v-bind="$attrs"
       width="980px"
-      v-on="$listeners"
       @open="onOpen"
       @close="onClose"
     >

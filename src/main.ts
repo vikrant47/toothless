@@ -4,11 +4,19 @@ import App from './App.vue'
 const app = createApp(App)
 import router from './router'
 import '@/styles/index.scss' // global css
-import '@/styles/custom.scss' // global css
+
+/* main.css */
+
+/* import the required styles */
+import "@braks/vue-flow/dist/style.css";
+
+/* import the default theme (optional) */
+// import "@braks/vue-flow/dist/theme-default.css";
 import CKEditor from '@ckeditor/ckeditor5-vue';
 //import vuex
 import store from './store'
 import draggable from 'vuedraggable'
+
 app.use(store)
 
 //import element-plus
@@ -50,7 +58,7 @@ import './permission'
 import ElSvgIcon from "@/components/ElSvgIcon.vue"
 
 app.component("ElSvgIcon", ElSvgIcon)
-app.component("draggable", draggable)
+app.component("Draggable", draggable)
 app.component("MonacoEditor", MonacoEditor)
 
 

@@ -14,27 +14,29 @@
         class="popup-body"
       />
     </div>
-    <div #footer class="dialog-footer">
-      <en-action
-        v-for="action in model.actions"
-        :key="action.id"
-        :action="action"
-        :event="{}"
-        :context="{
+    <template #footer>
+      <div class="dialog-footer">
+        <en-action
+          v-for="action in model.actions"
+          :key="action.id"
+          :action="action"
+          :event="{}"
+          :context="{
           popup: model,
         }"
-      />
-    </div>
+        />
+      </div>
+    </template>
   </el-dialog>
 </template>
 
 <script>
-import { EnginePopup } from '@/modules/engine/services/engine.popup';
+import {EnginePopup} from '@/modules/engine/services/engine.popup';
 import EnAction from '@/modules/engine/components/EnAction.vue';
 
 export default {
   name: 'EnPopup',
-  components: { EnAction },
+  components: {EnAction},
   props: {
     model: {
       type: EnginePopup,

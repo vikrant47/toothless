@@ -1,4 +1,4 @@
-import { TenantService } from '@/modules/engine/services/tenant.service';
+import {TenantService} from '@/modules/engine/services/tenant.service';
 
 export class EngineFlowNode {
   label
@@ -16,6 +16,12 @@ export class EngineFlowNode {
         queryMethod: 'get',
       })
     );
-    return response.contents;
+    const folders = response.contents;
+    for (const folder of folders) {
+      if (folder.nodes) {
+        folder.nodes = folder.nodes.map(node => Object.assign({ports: [{label: 'out'}]}, node))
+      }
+    }
+    return folders;
   }
 }

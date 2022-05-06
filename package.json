@@ -15,7 +15,7 @@
     "tsc-check": "tsc"
   },
   "dependencies": {
-    "@braks/vue-flow": "^0.3.1",
+    "@braks/vue-flow": "^0.4.0-17",
     "@ckeditor/ckeditor5-build-classic": "^33.0.0",
     "@ckeditor/ckeditor5-vue": "^3.0.0",
     "@element-plus/icons": "0.0.11",
@@ -35,6 +35,8 @@
     "nprogress": "0.2.0",
     "path": "0.12.7",
     "path-to-regexp": "^6.2.0",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.13",
     "vue": "^3.2.31",
     "vue-cron-generator": "^0.2.3",
     "vue-draggable-next": "^2.1.1",
