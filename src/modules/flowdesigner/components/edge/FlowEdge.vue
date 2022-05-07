@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { getEdgeCenter, getBezierPath, Position, useVueFlow, EdgeProps } from '@braks/vue-flow'
+import {getEdgeCenter, getBezierPath, Position, useVueFlow, EdgeProps, getSmoothStepPath} from '@braks/vue-flow'
+import {useAttrs} from "vue";
+import {Close} from '@element-plus/icons-vue';
 
 interface CustomEdgeProps<T = any> extends EdgeProps<T> {
   id: string
@@ -10,21 +12,23 @@ interface CustomEdgeProps<T = any> extends EdgeProps<T> {
   sourcePosition: Position
   targetPosition: Position
   data?: T
-  markerEnd: string
+  markerEnd: string;
+  style: any;
 }
 
-const props = defineProps<CustomEdgeProps>()
-const { id: storeId, applyEdgeChanges, store, getEdges } = useVueFlow()
+const props = defineProps<CustomEdgeProps>();
+const attrs = useAttrs();
+const {id: storeId, applyEdgeChanges, store, getEdges} = useVueFlow()
 
 const onClick = (evt: Event, id: string) => {
-  applyEdgeChanges([{ type: 'remove', id }])
+  applyEdgeChanges([{type: 'remove', id}])
   evt.stopPropagation()
 }
 
 const foreignObjectSize = 40
 
 const edgePath = computed(() =>
-  getBezierPath({
+  getSmoothStepPath({
     sourceX: props.sourceX,
     sourceY: props.sourceY,
     sourcePosition: props.sourcePosition,
@@ -48,7 +52,7 @@ export default {
 }
 </script>
 <template>
-  <path :id="props.id" :style="props.style" class="vue-flow__edge-path" :d="edgePath" :marker-end="props.markerEnd" />
+  <path :id="props.id" :style="props.style" class="vue-flow__edge-path" :d="edgePath" :marker-end="props.markerEnd"/>
   <foreignObject
     :width="foreignObjectSize"
     :height="foreignObjectSize"
@@ -58,16 +62,21 @@ export default {
     requiredExtensions="http://www.w3.org/1999/xhtml"
   >
     <body>
-    <button class="edgebutton" @click="(event) => onClick(event, props.id)">×</button>
+    <el-button type="danger" :icon="Close" circle @click="(event) => onClick(event, props.id)"/>
     </body>
   </foreignObject>
 </template>
-<style>
-.edgebutton {
-  border-radius: 999px;
+<style scoped lang="scss">
+
+.el-button {
+  display: none;
   cursor: pointer;
 }
-.edgebutton:hover {
-  box-shadow: 0 0 0 2px pink, 0 0 0 4px #f05f75;
+
+
+.vue-flow__edge-custom:hover .el-button, .vue-flow__edge-custom.selected .el-button {
+  display: block;
 }
+
+
 </style>

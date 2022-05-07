@@ -37,7 +37,7 @@ export default defineComponent({
   color: var(--el-text-color-regular);
   height: 90px;
   font-weight: 600;
-  font-size: 17px;
+  font-size: 14px;
   white-space: nowrap;
   border-right: 1px solid var(--el-border-color);
   border-bottom: 1px solid var(--el-border-color);
@@ -54,12 +54,10 @@ export default defineComponent({
 
     .node-text {
       width: 75%;
-      margin-left: -10px;
-      padding: 10px;
+      padding: 5px;
     }
-
-    img {
-      width: 25%;
+    .svg-icon{
+      font-size: 42px;
     }
   }
 }

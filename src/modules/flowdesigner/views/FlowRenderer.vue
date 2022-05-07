@@ -19,14 +19,13 @@
             <VueDraggableNext
               class="components-draggable"
               :list="item.nodes"
-              itemKey="label"
+              item-key="label"
               animation='340'
             >
               <div
                 v-for="(node, index) in item.nodes"
                 :key="index"
                 class="components-item"
-                @click="addComponent(node)"
               >
                 <div class="components-body">
                   <SidebarNode :node="node"></SidebarNode>
@@ -113,6 +112,10 @@ $lighterBlue: #409EFF;
   height: 100%;
 }
 
+.app-main {
+  padding: 0 !important;
+}
+
 .components-list {
   padding: 8px;
   box-sizing: border-box;
@@ -126,14 +129,19 @@ $lighterBlue: #409EFF;
   }
 }
 
+.left-board .el-scrollbar__wrap {
+  border-left: none;
+}
+
 .components-draggable {
   padding-bottom: 20px;
 }
 
 .components-title {
-  font-size: 14px;
+  font-size: 18px;
   color: #222;
   margin: 6px 2px;
+  font-weight: 600;
 
   .svg-icon {
     color: #666;
@@ -171,6 +179,10 @@ $lighterBlue: #409EFF;
   top: 0;
   height: 100vh;
   background-color: transparent;
+
+  .el-scrollbar__wrap, .components-body {
+    background-color: white;
+  }
 }
 
 .left-scrollbar {
@@ -189,7 +201,7 @@ $lighterBlue: #409EFF;
 .center-board {
   height: 100vh;
   width: auto;
-  margin: 0 350px 0 260px;
+  margin: 0 0 0 260px;
   box-sizing: border-box;
 }
 

@@ -19,7 +19,7 @@ export class EngineFlowNode {
     const folders = response.contents;
     for (const folder of folders) {
       if (folder.nodes) {
-        folder.nodes = folder.nodes.map(node => Object.assign({ports: [{label: 'out'}]}, node))
+        folder.nodes = folder.nodes.map(node => Object.assign({ports: [{label: 'out'}]}, node)).filter(node => node.hidden !== true)
       }
     }
     return folders;
